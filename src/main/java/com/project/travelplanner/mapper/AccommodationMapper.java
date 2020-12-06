@@ -25,7 +25,9 @@ public class AccommodationMapper {
                 accommodation.getName(),
                 accommodation.getLocation(),
                 accommodation.getPrice(),
-                accommodation.isAvailability());
+                accommodation.isAvailability(),
+                accommodation.getAccommodationDate(),
+                accommodation.getNumberOfPeople());
     }
 
     public List<AccommodationDto> mapToAccommodationDtoList(final List<Accommodation> accommodationList) {

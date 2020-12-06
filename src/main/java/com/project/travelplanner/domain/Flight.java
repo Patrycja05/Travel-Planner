@@ -1,7 +1,6 @@
 package com.project.travelplanner.domain;
 
 import com.sun.istack.NotNull;
-import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -12,14 +11,12 @@ import java.time.LocalTime;
 
 @Getter
 @Setter
-@AllArgsConstructor
 @NoArgsConstructor
 @Entity
 @Table(name = "FLIGHT")
 public class Flight {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "FLIGHT_ID")
     private Long flightId;
 
@@ -34,4 +31,19 @@ public class Flight {
     @Column(name = "FLIGHT_TIME")
     @NotNull
     private LocalTime flightTime;
+
+    @Column(name = "FLIGHT_STARTING_POINT")
+    @NotNull
+    private String flightStartingPoint;
+
+    @ManyToOne
+    @JoinColumn(name = "ORDER_ID")
+    private Order order;
+
+    public Flight(Long flightId, String flightDirection, LocalDate flightDate, LocalTime flightTime) {
+        this.flightId = flightId;
+        this.flightDirection = flightDirection;
+        this.flightDate = flightDate;
+        this.flightTime = flightTime;
+    }
 }

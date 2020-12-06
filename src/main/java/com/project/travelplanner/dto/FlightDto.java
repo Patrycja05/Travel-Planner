@@ -15,4 +15,5 @@ public class FlightDto {
     private String flightDirection;
     private LocalDate flightDate;
     private LocalTime flightTime;
+    private String flightStartingPoint;
 }

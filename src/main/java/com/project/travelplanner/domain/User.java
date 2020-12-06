@@ -1,7 +1,6 @@
 package com.project.travelplanner.domain;
 
 import com.sun.istack.NotNull;
-import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -12,14 +11,12 @@ import java.util.List;
 
 @Getter
 @Setter
-@AllArgsConstructor
 @NoArgsConstructor
 @Entity
 @Table(name = "USER")
 public class User {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "USER_ID")
     private Long id;
 
@@ -31,7 +28,17 @@ public class User {
     @NotNull
     private int phoneNumber;
 
-    @Column(name = "ORDER_ID_LIST")
-    @NotNull
-    private List<Long> orderIdList = new ArrayList<>();
+    @OneToMany(
+            targetEntity = Order.class,
+            mappedBy = "user",
+            cascade = CascadeType.ALL,
+            fetch = FetchType.LAZY
+    )
+    private List<Order> orderList = new ArrayList<>();
+
+    public User(Long id, String name, int phoneNumber) {
+        this.id = id;
+        this.name = name;
+        this.phoneNumber = phoneNumber;
+    }
 }

@@ -23,7 +23,8 @@ public class FlightMapper {
                 flight.getFlightId(),
                 flight.getFlightDirection(),
                 flight.getFlightDate(),
-                flight.getFlightTime());
+                flight.getFlightTime(),
+                flight.getFlightStartingPoint());
     }
 
     public List<FlightDto> mapToFlightDtoList(final List<Flight> flightList) {

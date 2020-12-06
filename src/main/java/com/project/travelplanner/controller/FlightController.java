@@ -1,6 +1,7 @@
 package com.project.travelplanner.controller;
 
 import com.project.travelplanner.dto.FlightDto;
+import com.project.travelplanner.exception.FlightNotFoundException;
 import com.project.travelplanner.mapper.FlightMapper;
 import com.project.travelplanner.service.FlightService;
 import org.springframework.beans.factory.annotation.Autowired;

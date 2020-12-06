@@ -1,6 +1,6 @@
 package com.project.travelplanner.service;
 
-import com.project.travelplanner.controller.UserNotFoundException;
+import com.project.travelplanner.exception.UserNotFoundException;
 import com.project.travelplanner.domain.User;
 import com.project.travelplanner.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;

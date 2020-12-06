@@ -1,4 +1,4 @@
-package com.project.travelplanner.controller;
+package com.project.travelplanner.exception;
 
 public class UserNotFoundException extends Exception {
 }

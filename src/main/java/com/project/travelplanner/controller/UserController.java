@@ -1,6 +1,7 @@
 package com.project.travelplanner.controller;
 
 import com.project.travelplanner.dto.UserDto;
+import com.project.travelplanner.exception.UserNotFoundException;
 import com.project.travelplanner.mapper.UserMapper;
 import com.project.travelplanner.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -33,6 +34,10 @@ public class UserController {
         userService.deleteUser(userId);
     }
 
+    @PutMapping(value = "updateUser")
+    public UserDto updateUser(@RequestBody UserDto userDto) {
+        return userMapper.mapToUserDto(userService.saveUser(userMapper.mapToUser(userDto)));
+    }
 
     @PostMapping(value = "/createUser")
     public void createUser(@RequestBody UserDto userDto) {

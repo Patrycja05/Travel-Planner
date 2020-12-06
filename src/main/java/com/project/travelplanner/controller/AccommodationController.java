@@ -1,6 +1,7 @@
 package com.project.travelplanner.controller;
 
 import com.project.travelplanner.dto.AccommodationDto;
+import com.project.travelplanner.exception.AccommodationNotFoundException;
 import com.project.travelplanner.mapper.AccommodationMapper;
 import com.project.travelplanner.service.AccommodationService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,16 +25,16 @@ public class AccommodationController {
     }
 
     @GetMapping(value = "/getAccommodation")
-    public AccommodationDto getAccommodation (@RequestParam Long AccommodationId) throws AccommodationNotFoundException {
-        return accommodationMapper.mapToAccommodationDto(accommodationService.getAccommodation(AccommodationId).orElseThrow(AccommodationNotFoundException::new));
+    public AccommodationDto getAccommodation (@RequestParam Long accommodationId) throws AccommodationNotFoundException {
+        return accommodationMapper.mapToAccommodationDto(accommodationService.getAccommodation(accommodationId).orElseThrow(AccommodationNotFoundException::new));
     }
 
-    @PutMapping(value = "addAccommodation")
+    @PutMapping(value = "/addAccommodation")
     public void addAccommodation(@RequestBody AccommodationDto accommodationDto){
         accommodationService.saveAccommodation(accommodationMapper.mapToAccommodation(accommodationDto));
     }
 
-    @DeleteMapping(value = "deleteAccommodation")
+    @DeleteMapping(value = "/deleteAccommodation")
     public void deleteAccommodation(@RequestParam Long accommodationId) {
         accommodationService.deleteAccommodation(accommodationId);
     }

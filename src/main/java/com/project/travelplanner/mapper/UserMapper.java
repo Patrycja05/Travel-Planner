@@ -14,16 +14,14 @@ public class UserMapper {
         return new User(
                 userDto.getId(),
                 userDto.getName(),
-                userDto.getPhoneNumber(),
-                userDto.getOrderIdList());
+                userDto.getPhoneNumber());
     }
 
     public UserDto mapToUserDto(final User user) {
         return new UserDto(
                 user.getId(),
                 user.getName(),
-                user.getPhoneNumber(),
-                user.getOrderIdList());
+                user.getPhoneNumber());
     }
 
     public List<UserDto> mapToUserDtoList(final List<User> userList) {

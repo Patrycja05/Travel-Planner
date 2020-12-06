@@ -1,6 +1,9 @@
 package com.project.travelplanner.controller;
 
 import com.project.travelplanner.dto.OrderDto;
+import com.project.travelplanner.dto.UserDto;
+import com.project.travelplanner.exception.OrderNotFoundException;
+import com.project.travelplanner.facade.OrderFacade;
 import com.project.travelplanner.mapper.OrderMapper;
 import com.project.travelplanner.service.OrderService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,29 +16,31 @@ import java.util.List;
 public class OrderController {
 
     @Autowired
-    private OrderMapper orderMapper;
-
-    @Autowired
-    private OrderService orderService;
+    private OrderFacade orderFacade;
 
     @GetMapping(value = "/getOrders")
     public List<OrderDto> getOrders(){
-        return orderMapper.mapToOrderDtoList(orderService.getAllOrders());
+        return orderFacade.getOrders();
     }
 
     @GetMapping(value = "/getOrder")
     public OrderDto getOrder(@RequestParam Long orderId) throws OrderNotFoundException {
-        return orderMapper.mapToOrderDto(orderService.getOrder(orderId).orElseThrow(OrderNotFoundException::new));
+        return orderFacade.getOrder(orderId);
     }
 
     @PostMapping(value = "/createOrder")
     public OrderDto createOrder (@RequestBody OrderDto orderDto) {
-        return orderMapper.mapToOrderDto(orderService.saveOrder(orderMapper.mapToOrder(orderDto)));
+        return orderFacade.createOrder(orderDto);
+    }
+
+    @PutMapping(value = "updateOrder")
+    public OrderDto updateUser(@RequestBody OrderDto orderDto) {
+        return orderFacade.updateUser(orderDto);
     }
 
     @DeleteMapping(value = "/deleteOrder")
     public void deleteOrder(@RequestParam Long orderId) {
-        orderService.deleteOrder(orderId);
+        orderFacade.deleteOrder(orderId);
     }
 
 }
